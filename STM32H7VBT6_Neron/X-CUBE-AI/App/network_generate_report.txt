@@ -1,0 +1,201 @@
+ST Edge AI Core v2.1.0-20194 329b0e98d
+Created date          : 2025-07-22 23:02:46
+Parameters            : generate --target stm32h7 --name network -m E:/VisierWorkSpace/ElectricDesign/STM32/Scripts/waveform_cnn_256.h5 --compression none --verbosity 1 --workspace C:/Users/VISIER/AppData/Local/Temp/mxAI_workspace1342711932140010212228390925524044 --output C:/Users/VISIER/.stm32cubemx/network_output
+
+Exec/report summary (generate)
+-------------------------------------------------------------------------------------------------------------
+model file         :   E:\VisierWorkSpace\ElectricDesign\STM32\Scripts\waveform_cnn_256.h5                   
+type               :   keras                                                                                 
+c_name             :   network                                                                               
+compression        :   none                                                                                  
+options            :   allocate-inputs, allocate-outputs                                                     
+optimization       :   balanced                                                                              
+target/series      :   stm32h7                                                                               
+workspace dir      :   C:\Users\VISIER\AppData\Local\Temp\mxAI_workspace1342711932140010212228390925524044   
+output dir         :   C:\Users\VISIER\.stm32cubemx\network_output                                           
+model_fmt          :   float                                                                                 
+model_name         :   waveform_cnn_256                                                                      
+model_hash         :   0x56d19280b3ce3845eab85f13ec10bda2                                                    
+params #           :   16,404 items (64.08 KiB)                                                              
+-------------------------------------------------------------------------------------------------------------
+input 1/1          :   'input_0', f32(1x256x1), 1024 Bytes, activations                                      
+output 1/1         :   'dense_1', f32(1x4), 16 Bytes, activations                                            
+macc               :   111,896                                                                               
+weights (ro)       :   65,616 B (64.08 KiB) (1 segment)                                                      
+activations (rw)   :   4,416 B (4.31 KiB) (1 segment) *                                                      
+ram (total)        :   4,416 B (4.31 KiB) = 4,416 + 0 + 0                                                    
+-------------------------------------------------------------------------------------------------------------
+(*) 'input'/'output' buffers can be used from the activations buffer
+
+Model name - waveform_cnn_256
+------ -------------------------------------- ------------------ --------------- -------- ----------------- --- ----------------- ------------------- ------------------------------- 
+m_id   layer (type,original)                  oshape             param/size          macc      connected to   | c_size            c_macc              c_type                          
+------ -------------------------------------- ------------------ --------------- -------- ----------------- --- ----------------- ------------------- ------------------------------- 
+0      input_0 (Input, None)                  [b:1,h:256,c:1]                                                 |                                       
+       conv1d_conv2d (Conv2D, Conv1D)         [b:1,h:252,c:8]    48/192            10,088           input_0   | -192(-100.0%)     -10,088(-100.0%)    
+       conv1d (Nonlinearity, Conv1D)          [b:1,h:252,c:8]                       2,016     conv1d_conv2d   |                   -2,016(-100.0%)     
+------ -------------------------------------- ------------------ --------------- -------- ----------------- --- ----------------- ------------------- ------------------------------- 
+1      max_pooling1d (Pool, MaxPooling1D)     [b:1,h:126,c:8]                       2,016            conv1d   | +192(+100.0%)     +12,104(+600.4%)    Conv2D_[0]                      
+------ -------------------------------------- ------------------ --------------- -------- ----------------- --- ----------------- ------------------- ------------------------------- 
+2      conv1d_1_conv2d (Conv2D, Conv1D)       [b:1,h:122,c:16]   656/2,624         78,096     max_pooling1d   | -2,624(-100.0%)   -78,096(-100.0%)    
+       conv1d_1 (Nonlinearity, Conv1D)        [b:1,h:122,c:16]                      1,952   conv1d_1_conv2d   |                   -1,952(-100.0%)     
+------ -------------------------------------- ------------------ --------------- -------- ----------------- --- ----------------- ------------------- ------------------------------- 
+3      max_pooling1d_1 (Pool, MaxPooling1D)   [b:1,h:61,c:16]                       1,952          conv1d_1   | +2,624(+100.0%)   +80,048(+4100.8%)   Conv2D_[1]                      
+------ -------------------------------------- ------------------ --------------- -------- ----------------- --- ----------------- ------------------- ------------------------------- 
+4      flatten (Reshape, Flatten)             [b:1,c:976]                                   max_pooling1d_1   |                                       
+------ -------------------------------------- ------------------ --------------- -------- ----------------- --- ----------------- ------------------- ------------------------------- 
+5      dense_dense (Dense, Dense)             [b:1,c:16]         15,632/62,528     15,632           flatten   |                   +16(+0.1%)          Dense_/Nonlinearity_[2, 3]      
+       dense (Nonlinearity, Dense)            [b:1,c:16]                               16       dense_dense   |                   -16(-100.0%)        
+------ -------------------------------------- ------------------ --------------- -------- ----------------- --- ----------------- ------------------- ------------------------------- 
+6      dense_1_dense (Dense, Dense)           [b:1,c:4]          68/272                68             dense   |                   +60(+88.2%)         Dense_/Nonlinearity_[o][4, 5]   
+       dense_1 (Nonlinearity, Dense)          [b:1,c:4]                                60     dense_1_dense   |                   -60(-100.0%)        
+------ -------------------------------------- ------------------ --------------- -------- ----------------- --- ----------------- ------------------- ------------------------------- 
+model/c-model: macc=111,896/111,896  weights=65,616/65,616  activations=--/4,416 io=--/0
+
+
+
+Generated C-graph summary
+------------------------------------------------------------------------------------------------------------------------
+model name            : waveform_cnn_256
+c-name                : network
+c-node #              : 6
+c-array #             : 19
+activations size      : 4416 (1 segment)
+weights size          : 65616 (1 segment)
+macc                  : 111896
+inputs                : ['input_0_output']
+outputs               : ['dense_1_output']
+
+C-Arrays (19)
+------ -------------------------- ------------- ------------------------- ------------- --------- 
+c_id   name (*_array)             item/size     domain/mem-pool           c-type        comment   
+------ -------------------------- ------------- ------------------------- ------------- --------- 
+0      conv1d_1_conv2d_bias       16/64         weights/weights           const float             
+1      conv1d_1_conv2d_output     976/3904      activations/**default**   float                   
+2      conv1d_1_conv2d_scratch0   40/160        activations/**default**   float                   
+3      conv1d_1_conv2d_scratch1   32/128        activations/**default**   float                   
+4      conv1d_1_conv2d_weights    640/2560      weights/weights           const float             
+5      conv1d_conv2d_bias         8/32          weights/weights           const float             
+6      conv1d_conv2d_output       1008/4032     activations/**default**   float                   
+7      conv1d_conv2d_scratch0     5/20          activations/**default**   float                   
+8      conv1d_conv2d_scratch1     16/64         activations/**default**   float                   
+9      conv1d_conv2d_weights      40/160        weights/weights           const float             
+10     dense_1_dense_bias         4/16          weights/weights           const float             
+11     dense_1_dense_output       4/16          activations/**default**   float                   
+12     dense_1_dense_weights      64/256        weights/weights           const float             
+13     dense_1_output             4/16          activations/**default**   float         /output   
+14     dense_dense_bias           16/64         weights/weights           const float             
+15     dense_dense_output         16/64         activations/**default**   float                   
+16     dense_dense_weights        15616/62464   weights/weights           const float             
+17     dense_output               16/64         activations/**default**   float                   
+18     input_0_output             256/1024      activations/**default**   float         /input    
+------ -------------------------- ------------- ------------------------- ------------- --------- 
+
+C-Layers (6)
+------ ----------------- ---- --------------- ------- ------- ----------------------------- ------------------- 
+c_id   name (*_layer)    id   layer_type      macc    rom     tensors                       shape (array id)    
+------ ----------------- ---- --------------- ------- ------- ----------------------------- ------------------- 
+0      conv1d_conv2d     1    Conv2D          14120   192     I: input_0_output             f32(1x256x1) (18)   
+                                                              S: conv1d_conv2d_scratch0                         
+                                                              S: conv1d_conv2d_scratch1                         
+                                                              W: conv1d_conv2d_weights      f32(8x5x1x1) (9)    
+                                                              W: conv1d_conv2d_bias         f32(8) (5)          
+                                                              O: conv1d_conv2d_output       f32(1x126x8) (6)    
+------ ----------------- ---- --------------- ------- ------- ----------------------------- ------------------- 
+1      conv1d_1_conv2d   3    Conv2D          82000   2624    I: conv1d_conv2d_output       f32(1x126x8) (6)    
+                                                              S: conv1d_1_conv2d_scratch0                       
+                                                              S: conv1d_1_conv2d_scratch1                       
+                                                              W: conv1d_1_conv2d_weights    f32(16x5x1x8) (4)   
+                                                              W: conv1d_1_conv2d_bias       f32(16) (0)         
+                                                              O: conv1d_1_conv2d_output     f32(1x61x16) (1)    
+------ ----------------- ---- --------------- ------- ------- ----------------------------- ------------------- 
+2      dense_dense       5    Dense           15632   62528   I: conv1d_1_conv2d_output     f32(1x61x16) (1)    
+                                                              W: dense_dense_weights        f32(16x976) (16)    
+                                                              W: dense_dense_bias           f32(16) (14)        
+                                                              O: dense_dense_output         f32(1x16) (15)      
+------ ----------------- ---- --------------- ------- ------- ----------------------------- ------------------- 
+3      dense             5    Nonlinearity    16      0       I: dense_dense_output         f32(1x16) (15)      
+                                                              O: dense_output               f32(1x16) (17)      
+------ ----------------- ---- --------------- ------- ------- ----------------------------- ------------------- 
+4      dense_1_dense     6    Dense           68      272     I: dense_output               f32(1x16) (17)      
+                                                              W: dense_1_dense_weights      f32(4x16) (12)      
+                                                              W: dense_1_dense_bias         f32(4) (10)         
+                                                              O: dense_1_dense_output       f32(1x4) (11)       
+------ ----------------- ---- --------------- ------- ------- ----------------------------- ------------------- 
+5      dense_1           6    Nonlinearity    60      0       I: dense_1_dense_output       f32(1x4) (11)       
+                                                              O: dense_1_output             f32(1x4) (13)       
+------ ----------------- ---- --------------- ------- ------- ----------------------------- ------------------- 
+
+
+
+Number of operations per c-layer
+------- ------ -------------------------- --------- -------------- 
+c_id    m_id   name (type)                      #op           type 
+------- ------ -------------------------- --------- -------------- 
+0       1      conv1d_conv2d (Conv2D)        14,120   smul_f32_f32 
+1       3      conv1d_1_conv2d (Conv2D)      82,000   smul_f32_f32 
+2       5      dense_dense (Dense)           15,632   smul_f32_f32 
+3       5      dense (Nonlinearity)              16     op_f32_f32 
+4       6      dense_1_dense (Dense)             68   smul_f32_f32 
+5       6      dense_1 (Nonlinearity)            60     op_f32_f32 
+------- ------ -------------------------- --------- -------------- 
+total                                       111,896 
+
+Number of operation types
+---------------- --------- ----------- 
+operation type           #           % 
+---------------- --------- ----------- 
+smul_f32_f32       111,820       99.9% 
+op_f32_f32              76        0.1% 
+
+Complexity report (model)
+------ ----------------- ------------------------- ------------------------- -------- 
+m_id   name              c_macc                    c_rom                     c_id     
+------ ----------------- ------------------------- ------------------------- -------- 
+1      max_pooling1d     |||               12.6%   |                  0.3%   [0]      
+3      max_pooling1d_1   ||||||||||||||||  73.3%   |                  4.0%   [1]      
+5      dense_dense       |||               14.0%   ||||||||||||||||  95.3%   [2, 3]   
+6      dense_1_dense     |                  0.1%   |                  0.4%   [4, 5]   
+------ ----------------- ------------------------- ------------------------- -------- 
+macc=111,896 weights=65,616 act=4,416 ram_io=0
+ 
+ Requested memory size by section - "stm32h7" target
+ ------------------------------ -------- -------- ------- ------- 
+ module                             text   rodata    data     bss 
+ ------------------------------ -------- -------- ------- ------- 
+ NetworkRuntime1010_CM7_GCC.a     11,732        0       0       0 
+ network.o                           660       48   2,432     200 
+ network_data.o                       48       16      88       0 
+ lib (toolchain)*                    318      328       0       0 
+ ------------------------------ -------- -------- ------- ------- 
+ RT total**                       12,758      392   2,520     200 
+ ------------------------------ -------- -------- ------- ------- 
+ weights                               0   65,616       0       0 
+ activations                           0        0       0   4,416 
+ io                                    0        0       0       0 
+ ------------------------------ -------- -------- ------- ------- 
+ TOTAL                            12,758   66,008   2,520   4,616 
+ ------------------------------ -------- -------- ------- ------- 
+ *  toolchain objects (libm/libgcc*)
+ ** RT AI runtime objects (kernels+infrastructure)
+  
+  Summary - "stm32h7" target
+  ---------------------------------------------------
+               FLASH (ro)      %*   RAM (rw)       % 
+  ---------------------------------------------------
+  RT total         15,670   19.3%      2,720   38.1% 
+  ---------------------------------------------------
+  TOTAL            81,286              7,136         
+  ---------------------------------------------------
+  *  rt/total
+
+
+Generated files (7)
+------------------------------------------------------------------- 
+C:\Users\VISIER\.stm32cubemx\network_output\network_data_params.h   
+C:\Users\VISIER\.stm32cubemx\network_output\network_data_params.c   
+C:\Users\VISIER\.stm32cubemx\network_output\network_data.h          
+C:\Users\VISIER\.stm32cubemx\network_output\network_data.c          
+C:\Users\VISIER\.stm32cubemx\network_output\network_config.h        
+C:\Users\VISIER\.stm32cubemx\network_output\network.h               
+C:\Users\VISIER\.stm32cubemx\network_output\network.c               
