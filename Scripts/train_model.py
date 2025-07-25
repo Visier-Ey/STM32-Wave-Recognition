@@ -11,10 +11,10 @@ import seaborn as sns
 
 # 可配置参数
 class Config:
-    dataset_path = "waveform_dataset.h5"
-    model_path = "waveform_cnn_256.h5"
+    dataset_path = "DataSet/waveform_dataset.h5"
+    model_path = "Model/waveform_cnn_256.h5"
     epochs = 20
-    batch_size = 32
+    batch_size = 64
     class_names = ["SINE", "TRIANGLE", "FSK", "BPSK"]
 
 def load_data():

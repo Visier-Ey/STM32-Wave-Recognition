@@ -42,34 +42,7 @@ def generate_dataset(num_classes, signal_length, fs, samples_per_class,
     print(f"✅ 数据集已保存到 {output_file}，X shape: {X.shape}，y shape: {y.shape}")
 
 
-def convert_to_cubeai_format(input_file, output_file):
-    """
-    将自定义格式的HDF5文件转换为X-CUBE-AI兼容格式
-    """
-    with h5py.File(input_file, 'r') as f_in:
-        X = f_in['X'][:]  # 形状 (4000, 256, 1)
-        y = f_in['y'][:]  # 形状 (4000, 4) - one-hot编码
-        
-        # 调整输入维度为 (4000, 256, 1, 1)
-        X = X.reshape((X.shape[0], X.shape[1], 1, 1))
-        
-        # 确保输出是4维one-hot (4000, 1, 1, 4)
-        if y.ndim == 2:  # 如果是二维one-hot
-            y = y.reshape((y.shape[0], 1, 1, y.shape[1]))
-        elif y.ndim == 1:  # 如果是一维类别索引
-            y = np.eye(4)[y].reshape((y.shape[0], 1, 1, 4))
-        
-        with h5py.File(output_file, 'w') as f_out:
-            f_out.create_dataset('input', data=X.astype('float32'))
-            f_out.create_dataset('output', data=y.astype('int32'))
-    
-    print(f"✅ 转换完成！X-CUBE-AI格式数据集已保存到 {output_file}")
-    print(f"  输入数据维度: {X.shape}, 输出数据维度: {y.shape}")
-    
-    # 保存NPY文件（保持原始维度）
-    np.save(output_file.replace('.h5', '_input.npy'), X.squeeze())  # (4000, 256)
-    np.save(output_file.replace('.h5', '_output.npy'), np.argmax(y, axis=3).squeeze())  # (4000,)
-    print(f"✅ NPY文件已保存：{output_file.replace('.h5', '_input.npy')} 和 _output.npy")
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="波形数据集生成器（固定长度 + 可变频率/幅值/采样率）")
@@ -80,7 +53,7 @@ if __name__ == "__main__":
     parser.add_argument('--freq_max', type=float, default=300000.0, help='最大频率 (Hz)')
     parser.add_argument('--amp_min', type=float, default=0.5, help='最小幅值')
     parser.add_argument('--amp_max', type=float, default=1.0, help='最大幅值')
-    parser.add_argument('--output', type=str, default='waveform_dataset.h5', help='输出 HDF5 文件名')
+    parser.add_argument('--output', type=str, default='DataSet/waveform_dataset.h5', help='输出 HDF5 文件名')
 
     args = parser.parse_args()
 
@@ -95,4 +68,3 @@ if __name__ == "__main__":
         amp_min=args.amp_min,
         amp_max=args.amp_max
     )
-    convert_to_cubeai_format(args.output, "waveform_dataset_cubeai.h5")

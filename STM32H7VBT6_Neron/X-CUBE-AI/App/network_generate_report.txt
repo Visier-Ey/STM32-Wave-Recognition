@@ -1,30 +1,30 @@
 ST Edge AI Core v2.1.0-20194 329b0e98d
-Created date          : 2025-07-22 23:02:46
-Parameters            : generate --target stm32h7 --name network -m E:/VisierWorkSpace/ElectricDesign/STM32/Scripts/waveform_cnn_256.h5 --compression none --verbosity 1 --workspace C:/Users/VISIER/AppData/Local/Temp/mxAI_workspace1342711932140010212228390925524044 --output C:/Users/VISIER/.stm32cubemx/network_output
+Created date          : 2025-07-25 15:26:18
+Parameters            : generate --target stm32h7 --name network -m E:/VisierWorkSpace/ElectricDesign/STM32-Wave-Recognition/Model/waveform_cnn_256.h5 --compression none --verbosity 1 --workspace C:/Users/VISIER/AppData/Local/Temp/mxAI_workspace116220964650013042950289266154369 --output C:/Users/VISIER/.stm32cubemx/network_output
 
 Exec/report summary (generate)
--------------------------------------------------------------------------------------------------------------
-model file         :   E:\VisierWorkSpace\ElectricDesign\STM32\Scripts\waveform_cnn_256.h5                   
-type               :   keras                                                                                 
-c_name             :   network                                                                               
-compression        :   none                                                                                  
-options            :   allocate-inputs, allocate-outputs                                                     
-optimization       :   balanced                                                                              
-target/series      :   stm32h7                                                                               
-workspace dir      :   C:\Users\VISIER\AppData\Local\Temp\mxAI_workspace1342711932140010212228390925524044   
-output dir         :   C:\Users\VISIER\.stm32cubemx\network_output                                           
-model_fmt          :   float                                                                                 
-model_name         :   waveform_cnn_256                                                                      
-model_hash         :   0x56d19280b3ce3845eab85f13ec10bda2                                                    
-params #           :   16,404 items (64.08 KiB)                                                              
--------------------------------------------------------------------------------------------------------------
-input 1/1          :   'input_0', f32(1x256x1), 1024 Bytes, activations                                      
-output 1/1         :   'dense_1', f32(1x4), 16 Bytes, activations                                            
-macc               :   111,896                                                                               
-weights (ro)       :   65,616 B (64.08 KiB) (1 segment)                                                      
-activations (rw)   :   4,416 B (4.31 KiB) (1 segment) *                                                      
-ram (total)        :   4,416 B (4.31 KiB) = 4,416 + 0 + 0                                                    
--------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------
+model file         :   E:\VisierWorkSpace\ElectricDesign\STM32-Wave-Recognition\Model\waveform_cnn_256.h5   
+type               :   keras                                                                                
+c_name             :   network                                                                              
+compression        :   none                                                                                 
+options            :   allocate-inputs, allocate-outputs                                                    
+optimization       :   balanced                                                                             
+target/series      :   stm32h7                                                                              
+workspace dir      :   C:\Users\VISIER\AppData\Local\Temp\mxAI_workspace116220964650013042950289266154369   
+output dir         :   C:\Users\VISIER\.stm32cubemx\network_output                                          
+model_fmt          :   float                                                                                
+model_name         :   waveform_cnn_256                                                                     
+model_hash         :   0x9a08aa242018be83079891c1dbf4f47d                                                   
+params #           :   16,404 items (64.08 KiB)                                                             
+------------------------------------------------------------------------------------------------------------
+input 1/1          :   'input_0', f32(1x256x1), 1024 Bytes, activations                                     
+output 1/1         :   'dense_1', f32(1x4), 16 Bytes, activations                                           
+macc               :   111,896                                                                              
+weights (ro)       :   65,616 B (64.08 KiB) (1 segment)                                                     
+activations (rw)   :   4,416 B (4.31 KiB) (1 segment) *                                                     
+ram (total)        :   4,416 B (4.31 KiB) = 4,416 + 0 + 0                                                   
+------------------------------------------------------------------------------------------------------------
 (*) 'input'/'output' buffers can be used from the activations buffer
 
 Model name - waveform_cnn_256

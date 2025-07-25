@@ -59,7 +59,7 @@
 
 /* USER CODE BEGIN includes */
    AI_ALIGNED(32)  static float output_data[AI_NETWORK_OUT_1_SIZE];
-   AI_ALIGNED(32)  static float input_data[AI_NETWORK_OUT_1_SIZE];
+   AI_ALIGNED(32)  static float input_data[AI_NETWORK_IN_1_SIZE];
 /* USER CODE END includes */
 
 /* IO buffers ----------------------------------------------------------------*/
@@ -174,7 +174,7 @@ static int ai_run(void)
 
 /* USER CODE BEGIN 2 */
 
-  extern float test_signals[4][256];
+
   extern float waveform_fsk[256];
   extern float waveform_sine[256];
   extern float waveform_triangle[256];
@@ -184,7 +184,7 @@ static int ai_run(void)
     for (int i = 0; i < AI_NETWORK_IN_1_SIZE; i++)
     {
       // input_data[i] = test_signals[1][i];
-      input_data[i] = waveform_triangle[i];
+      input_data[i] = waveform_sine[i];
     }
     ai_input[0].data = AI_HANDLE_PTR(input_data);
     ai_output[0].data = AI_HANDLE_PTR(output_data);
@@ -194,7 +194,7 @@ static int ai_run(void)
 #include <stdio.h>
   int post_process()
   {
-    // 1. 定义类别名称（与模型输出顺序对应�???
+    // 1. 定义类别名称（与模型输出顺序对应�????
     static const char *class_names[4] = {
         "SINE",     // 对应Python索引0
         "TRIANGLE", // 对应Python索引1
@@ -202,7 +202,7 @@ static int ai_run(void)
         "BPSK"      // 对应Python索引3
     };
 
-    // 2. 找出概率�???高的类别
+    // 2. 找出概率�????高的类别
     int predicted_class = 0;
     float max_prob = output_data[0];
 
@@ -227,7 +227,7 @@ static int ai_run(void)
     }
     printf("-> Predicted: %s (%.2f%%)\n", class_names[predicted_class], max_prob * 100);
 
-    // 5. 返回预测的类别索�???
+    // 5. 返回预测的类别索�????
     return 0;
   }
 /* USER CODE END 2 */

@@ -55,7 +55,7 @@ python Scripts/train_model.py
 ```
 
 
-模型输出路径：Scripts/Model/waveform_cnn_256.h5
+模型输出路径：Model/waveform_cnn_256.h5
 
 ### 3. 嵌入式部署
 1. 使用STM32CubeMX打开工程文件
@@ -68,14 +68,15 @@ python Scripts/train_model.py
 ├── Scripts/ # Python训练脚本
 │ ├── dataset_generator.py # 波形数据生成器
 │ ├── train_model.py # CNN训练脚本
-│ └── Model/ # 预训练模型
+│ ├── verify.py # 生成C语言验证数组
+├── Model/ # 预训练模型
+├── DataSet/ # 数据集
 ├── STM32H7VBT6_Neron/ # 嵌入式工程
 │ ├── Core/ # 用户代码
 │ │ ├── Src/ # 数据采集/推理逻辑
 │ │ └── Inc/ # AI接口定义
 │ ├── MDK-ARM/ # Keil项目文件
 │ └── .ai/ # X-CUBE-AI配置
-└── docs/ # 开发文档
 ```
 
 ## 开发指南

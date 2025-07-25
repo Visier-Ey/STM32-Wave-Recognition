@@ -562,44 +562,44 @@
   ],
   "environment": {
     "generated_model": {
-      "generated_time": "2025-07-22T23:02:45+0800",
+      "generated_time": "2025-07-25T15:26:17+0800",
       "model_files": [
         {
           "name": "network_data_params.h",
-          "signature": "0x5ea9f7b68b08a9bdb19f2986e7a22c64"
+          "signature": "0xe9bf9406b4354f08303ea16ead6f6158"
         },
         {
           "name": "network_data_params.c",
-          "signature": "0x08ea62e61b4f3cc93002a4e1ddcff102"
+          "signature": "0x7498008edffeba83d500c5835de3853b"
         },
         {
           "name": "network_data.h",
-          "signature": "0x4f8179cd9bc3df78d54c8fa29d2b0871"
+          "signature": "0x87f09bd0c233fd850efac1a7e0e91eaf"
         },
         {
           "name": "network_data.c",
-          "signature": "0xa1703d36cfdf100936a0f44d65c73674"
+          "signature": "0x467f5469027b1e2fdd1d2f8dd48d7aaf"
         },
         {
           "name": "network_config.h",
-          "signature": "0xf420859da885aa46be4ae12ede5adf1c"
+          "signature": "0xfd339c47e872c0365c76d7c5082668c9"
         },
         {
           "name": "network.h",
-          "signature": "0x6aa193236b363e714344ac9ae5c0135a"
+          "signature": "0x7d523fd252cdce450c0ad763112f77c6"
         },
         {
           "name": "network.c",
-          "signature": "0xefb41bd68bcf323ee7f2ee7735f7b247"
+          "signature": "0x8876d2ce1274bffe217d1861debaf7b3"
         }
       ],
       "name": "network"
     },
-    "network_signature": "0x4bee26f9221c76fe",
+    "network_signature": "0x451fe4da05a5d60c",
     "test_name": "",
     "tools": [
       {
-        "arguments": "generate --target stm32h7 --name network -m E:/VisierWorkSpace/ElectricDesign/STM32/Scripts/waveform_cnn_256.h5 --compression none --verbosity 1 --workspace C:/Users/VISIER/AppData/Local/Temp/mxAI_workspace1342711932140010212228390925524044 --output C:/Users/VISIER/.stm32cubemx/network_output",
+        "arguments": "generate --target stm32h7 --name network -m E:/VisierWorkSpace/ElectricDesign/STM32-Wave-Recognition/Model/waveform_cnn_256.h5 --compression none --verbosity 1 --workspace C:/Users/VISIER/AppData/Local/Temp/mxAI_workspace116220964650013042950289266154369 --output C:/Users/VISIER/.stm32cubemx/network_output",
         "environment": [
           "STATS_TYPE=X-CUBE-AI"
         ],
@@ -607,7 +607,7 @@
           "model_files": [
             {
               "name": "waveform_cnn_256.h5",
-              "signature": "0x56d19280b3ce3845eab85f13ec10bda2"
+              "signature": "0x9a08aa242018be83079891c1dbf4f47d"
             }
           ],
           "n_params": 16404,
